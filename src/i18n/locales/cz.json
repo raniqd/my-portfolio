@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "work": "Projekty",
+    "about": "O mně",
+    "stack": "Stack",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "greeting": "Ahoj, jsem",
+    "name": "Danylo Vasylenko",
+    "nickname": "raniqd",
+    "title": "Full-Stack Vývojář",
+    "subtitle": "Tvořím moderní webové aplikace od UI po databázi — jeden commit po druhém.",
+    "cta_primary": "Zobrazit projekty",
+    "cta_secondary": "Kontaktovat",
+    "scroll_hint": "Scrollujte dolů",
+    "node_frontend": "Frontend",
+    "node_api": "API Vrstva",
+    "node_db": "Databáze"
+  },
+  "stack": {
+    "title": "Technologie",
+    "subtitle": "Jazyky a nástroje, které používám",
+    "languages": "Jazyky",
+    "frontend": "Frontend",
+    "backend": "Backend & DB",
+    "tools": "Nástroje"
+  },
+  "work": {
+    "title": "Projekty",
+    "subtitle": "Co jsem už vypustil",
+    "frontend_label": "Frontend",
+    "backend_label": "Architektura",
+    "view_project": "Zobrazit projekt",
+    "view_code": "Kód",
+    "flip_hint": "Najeďte pro stack"
+  },
+  "about": {
+    "title": "O mně",
+    "terminal_prompt": "raniqd@portfolio:~$",
+    "line1": "whoami",
+    "line1_result": "Danylo Vasylenko — Full-Stack vývojář z Ukrajiny. 4 měsíce v kódu, už shipmenuji reálné produkty.",
+    "line2": "cat skills.txt",
+    "line2_result": "HTML · CSS · TypeScript · JavaScript · Flutter · Kotlin",
+    "line3": "cat stack.txt",
+    "line3_result": "React · Next.js · Supabase · Prisma · Vercel · GitHub",
+    "line4": "ls projects/",
+    "line4_result": "zzpizza/  vice-prichazi/",
+    "line5": "echo $MOTIVATION",
+    "line5_result": "Začal jsem programovat v lednu 2026. Stavím reálné věci, učím se rychle, shipmenuji často.",
+    "download_cv": "Stáhnout CV",
+    "contact_me": "Kontaktovat"
+  },
+  "footer": {
+    "made_with": "Vytvořeno s vášní",
+    "rights": "Všechna práva vyhrazena"
+  }
+}

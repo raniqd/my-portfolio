@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "work": "Проекты",
+    "about": "Обо мне",
+    "stack": "Стек",
+    "contact": "Контакт"
+  },
+  "hero": {
+    "greeting": "Привет, я",
+    "name": "Даня Василенко",
+    "nickname": "raniqd",
+    "title": "Фулстак-разработчик",
+    "subtitle": "Создаю современные веб-приложения от интерфейса до базы данных — коммит за коммитом.",
+    "cta_primary": "Смотреть проекты",
+    "cta_secondary": "Написать мне",
+    "scroll_hint": "Прокрутите вниз",
+    "node_frontend": "Фронтенд",
+    "node_api": "API Слой",
+    "node_db": "База данных"
+  },
+  "stack": {
+    "title": "Технологии",
+    "subtitle": "Языки и инструменты, которые я использую",
+    "languages": "Языки",
+    "frontend": "Фронтенд",
+    "backend": "Бэкенд и БД",
+    "tools": "Инструменты"
+  },
+  "work": {
+    "title": "Проекты",
+    "subtitle": "То, что я уже запустил",
+    "frontend_label": "Фронтенд",
+    "backend_label": "Архитектура",
+    "view_project": "Смотреть проект",
+    "view_code": "Код",
+    "flip_hint": "Наведите для стека"
+  },
+  "about": {
+    "title": "Обо мне",
+    "terminal_prompt": "raniqd@portfolio:~$",
+    "line1": "whoami",
+    "line1_result": "Данило Василенко — Фулстак-разработчик из Украины. 4 месяца в коде, уже запускаю реальные продукты.",
+    "line2": "cat skills.txt",
+    "line2_result": "HTML · CSS · TypeScript · JavaScript · Flutter · Kotlin",
+    "line3": "cat stack.txt",
+    "line3_result": "React · Next.js · Supabase · Prisma · Vercel · GitHub",
+    "line4": "ls projects/",
+    "line4_result": "zzpizza/  ещё-в-разработке/",
+    "line5": "echo $MOTIVATION",
+    "line5_result": "Начал кодить в январе 2026. Строю реальные вещи, учусь быстро, шиплю часто.",
+    "download_cv": "Скачать резюме",
+    "contact_me": "Написать мне"
+  },
+  "footer": {
+    "made_with": "Создано с душой",
+    "rights": "Все права защищены"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "work": "Work",
+    "about": "About",
+    "stack": "Stack",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "name": "Danylo Vasylenko",
+    "nickname": "raniqd",
+    "title": "Full-Stack Developer",
+    "subtitle": "Building modern web apps from UI to database — one commit at a time.",
+    "cta_primary": "View Work",
+    "cta_secondary": "Get in Touch",
+    "scroll_hint": "Scroll to explore",
+    "node_frontend": "Frontend",
+    "node_api": "API Layer",
+    "node_db": "Database"
+  },
+  "stack": {
+    "title": "Tech Stack",
+    "subtitle": "Languages and tools I use to build things",
+    "languages": "Languages",
+    "frontend": "Frontend",
+    "backend": "Backend & DB",
+    "tools": "Tools"
+  },
+  "work": {
+    "title": "Selected Work",
+    "subtitle": "Projects I've shipped",
+    "frontend_label": "Frontend",
+    "backend_label": "Architecture",
+    "view_project": "View Project",
+    "view_code": "View Code",
+    "flip_hint": "Hover to see stack"
+  },
+  "about": {
+    "title": "About Me",
+    "terminal_prompt": "raniqd@portfolio:~$",
+    "line1": "whoami",
+    "line1_result": "Danylo Vasylenko — Full-Stack Developer from Ukraine, 4 months into coding and already shipping real products.",
+    "line2": "cat skills.txt",
+    "line2_result": "HTML · CSS · TypeScript · JavaScript · Flutter · Kotlin",
+    "line3": "cat stack.txt",
+    "line3_result": "React · Next.js · Supabase · Prisma · Vercel · GitHub",
+    "line4": "ls projects/",
+    "line4_result": "zzpizza/  more-coming-soon/",
+    "line5": "echo $MOTIVATION",
+    "line5_result": "Started coding in January 2026. Building real things, learning fast, shipping often.",
+    "download_cv": "Download CV",
+    "contact_me": "Contact Me"
+  },
+  "footer": {
+    "made_with": "Crafted with passion",
+    "rights": "All rights reserved"
+  }
+}
