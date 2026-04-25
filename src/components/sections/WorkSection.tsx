@@ -28,7 +28,7 @@ const PROJECTS = [
       stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Prisma', 'Vercel'],
     },
     gradient: 'from-amber-600/20 to-orange-900/20',
-    link: '#',
+    link: 'https://zzpizza.raniqd.tech/',
     github: 'https://github.com/raniqd',
   },
   {
@@ -231,6 +231,8 @@ function ProjectCard({ project, index, large }: { project: typeof PROJECTS[0]; i
               </a>
               <a
                 href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-xs font-mono text-white/40 hover:text-white transition-colors border border-white/15 hover:border-white/30 px-3 py-1.5 rounded-lg"
               >
                 ↗ Live
