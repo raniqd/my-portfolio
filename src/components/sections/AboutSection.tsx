@@ -36,9 +36,10 @@ function useTypingEffect(text: string, speed = 30, startDelay = 0) {
   return { displayed, done };
 }
 
-function TerminalBlock({ isInView }: { isInView: boolean }) {
+function TerminalBlock({ isInView, containerRef }: { isInView: boolean; containerRef: React.RefObject<HTMLDivElement> }) {
   const { t } = useI18n();
   const [step, setStep] = useState(0);
+  const bottomRef = useRef<HTMLDivElement>(null);
 
   const lines: TerminalLine[] = [
     { type: 'prompt', text: t('about.terminal_prompt'), delay: 0 },
@@ -69,6 +70,16 @@ function TerminalBlock({ isInView }: { isInView: boolean }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isInView]);
 
+  // Auto-scroll the terminal container to the bottom whenever a new line appears
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTo({
+        top: containerRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
+  }, [step, containerRef]);
+
   return (
     <div className="font-mono text-sm space-y-1.5 p-2">
       {lines.slice(0, step).map((line, i) => (
@@ -92,7 +103,7 @@ function TerminalBlock({ isInView }: { isInView: boolean }) {
       ))}
 
       {/* Blinking cursor */}
-      <div className="flex gap-2">
+      <div ref={bottomRef} className="flex gap-2">
         {step >= lines.length ? (
           <span className="text-emerald-400">{t('about.terminal_prompt')}</span>
         ) : null}
@@ -111,6 +122,7 @@ function TerminalBlock({ isInView }: { isInView: boolean }) {
 export default function AboutSection() {
   const { t } = useI18n();
   const sectionRef = useRef<HTMLElement>(null);
+  const terminalContentRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
@@ -220,13 +232,13 @@ export default function AboutSection() {
               </div>
 
               {/* Terminal content */}
-              <div className="p-5 min-h-64 max-h-96 overflow-y-auto scrollbar-thin">
+              <div ref={terminalContentRef} className="p-5 min-h-64 max-h-96 overflow-y-auto scrollbar-thin">
                 {/* Startup header */}
                 <div className="text-emerald-400/50 text-xs font-mono mb-4 space-y-1">
                   <p>Last login: {new Date().toDateString()} on console</p>
                   <p className="text-violet-400/50">Portfolio OS v2026.04 - Powered by passion ✦</p>
                 </div>
-                <TerminalBlock isInView={isInView} />
+                <TerminalBlock isInView={isInView} containerRef={terminalContentRef} />
               </div>
             </div>
 
