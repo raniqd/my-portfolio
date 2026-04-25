@@ -36,7 +36,7 @@ function useTypingEffect(text: string, speed = 30, startDelay = 0) {
   return { displayed, done };
 }
 
-function TerminalBlock({ isInView, containerRef }: { isInView: boolean; containerRef: React.RefObject<HTMLDivElement> }) {
+function TerminalBlock({ isInView, containerRef }: { isInView: boolean; containerRef: React.RefObject<HTMLDivElement | null> }) {
   const { t } = useI18n();
   const [step, setStep] = useState(0);
   const bottomRef = useRef<HTMLDivElement>(null);
