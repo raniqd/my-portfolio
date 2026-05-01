@@ -4,62 +4,65 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useI18n } from '@/i18n';
 
-const PROJECTS = [
-  {
-    id: 'zzpizza',
-    title: 'ZZPizza',
-    subtitle: 'Full-Stack Pizza Delivery Platform',
-    category: 'Client Project',
-    year: '2026',
-    color: '#f59e0b',
-    tags: ['HTML', 'TypeScript', 'JavaScript', 'CSS', 'Next.js', 'Tailwind'],
-    description:
-      'A complete online pizza ordering platform built for a real client. Features a dynamic menu, product configurator, cart, admin dashboard, and a discount system.',
-    highlights: ['Real Client', 'Admin Panel', 'Discount System'],
-    arch: {
-      diagram: [
-        { label: 'Next.js App', color: '#ffffff', x: 5, y: 8 },
-        { label: 'Tailwind UI', color: '#06b6d4', x: 38, y: 8 },
-        { label: 'TypeScript', color: '#3178c6', x: 68, y: 8 },
-        { label: 'Supabase DB', color: '#3ecf8e', x: 5, y: 60 },
-        { label: 'Prisma ORM', color: '#5a67d8', x: 38, y: 60 },
-        { label: 'Vercel', color: '#ffffff', x: 68, y: 60 },
-      ],
-      stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Prisma', 'Vercel'],
+function useProjects() {
+  const { t } = useI18n();
+  return [
+    {
+      id: 'zzpizza',
+      title: 'ZZPizza',
+      subtitle: t('work.project_zzpizza_subtitle'),
+      category: t('work.project_zzpizza_category'),
+      year: '2026',
+      color: '#f59e0b',
+      tags: ['HTML', 'TypeScript', 'JavaScript', 'CSS', 'Next.js', 'Tailwind'],
+      description: t('work.project_zzpizza_description'),
+      highlights: [t('work.project_zzpizza_h1'), t('work.project_zzpizza_h2'), t('work.project_zzpizza_h3')],
+      arch: {
+        diagram: [
+          { label: 'Next.js App', color: '#ffffff', x: 5, y: 8 },
+          { label: 'Tailwind UI', color: '#06b6d4', x: 38, y: 8 },
+          { label: 'TypeScript', color: '#3178c6', x: 68, y: 8 },
+          { label: 'Supabase DB', color: '#3ecf8e', x: 5, y: 60 },
+          { label: 'Prisma ORM', color: '#5a67d8', x: 38, y: 60 },
+          { label: 'Vercel', color: '#ffffff', x: 68, y: 60 },
+        ],
+        stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Prisma', 'Vercel'],
+      },
+      gradient: 'from-amber-600/20 to-orange-900/20',
+      link: 'https://zzpizza.raniqd.tech/',
+      github: 'https://github.com/raniqd',
     },
-    gradient: 'from-amber-600/20 to-orange-900/20',
-    link: 'https://zzpizza.raniqd.tech/',
-    github: 'https://github.com/raniqd',
-  },
-  {
-    id: 'portfolio',
-    title: 'raniqd.dev',
-    subtitle: 'Personal Portfolio Website',
-    category: 'Personal',
-    year: '2026',
-    color: '#8b5cf6',
-    tags: ['Next.js', 'TypeScript', 'Three.js', 'Framer Motion', 'GSAP'],
-    description:
-      'The very site you\'re looking at — built with React Three Fiber for 3D WebGL, Framer Motion animations, Lenis smooth scroll, and a custom i18n system supporting EN / RU / CZ.',
-    highlights: ['3D WebGL', 'i18n (3 langs)', 'GSAP + Framer'],
-    arch: {
-      diagram: [
-        { label: 'Next.js 16', color: '#ffffff', x: 5, y: 8 },
-        { label: 'React 3 Fiber', color: '#61dafb', x: 38, y: 8 },
-        { label: 'Framer Motion', color: '#ff0055', x: 68, y: 8 },
-        { label: 'GSAP', color: '#88ce02', x: 5, y: 60 },
-        { label: 'Lenis Scroll', color: '#8b5cf6', x: 38, y: 60 },
-        { label: 'Vercel Edge', color: '#ffffff', x: 68, y: 60 },
-      ],
-      stack: ['Next.js 16', 'Three.js', 'R3F', 'GSAP', 'Framer Motion', 'Lenis'],
+    {
+      id: 'portfolio',
+      title: 'raniqd.dev',
+      subtitle: t('work.project_portfolio_subtitle'),
+      category: t('work.project_portfolio_category'),
+      year: '2026',
+      color: '#8b5cf6',
+      tags: ['Next.js', 'TypeScript', 'Three.js', 'Framer Motion', 'GSAP'],
+      description: t('work.project_portfolio_description'),
+      highlights: [t('work.project_portfolio_h1'), t('work.project_portfolio_h2'), t('work.project_portfolio_h3')],
+      arch: {
+        diagram: [
+          { label: 'Next.js 16', color: '#ffffff', x: 5, y: 8 },
+          { label: 'React 3 Fiber', color: '#61dafb', x: 38, y: 8 },
+          { label: 'Framer Motion', color: '#ff0055', x: 68, y: 8 },
+          { label: 'GSAP', color: '#88ce02', x: 5, y: 60 },
+          { label: 'Lenis Scroll', color: '#8b5cf6', x: 38, y: 60 },
+          { label: 'Vercel Edge', color: '#ffffff', x: 68, y: 60 },
+        ],
+        stack: ['Next.js 16', 'Three.js', 'R3F', 'GSAP', 'Framer Motion', 'Lenis'],
+      },
+      gradient: 'from-violet-600/20 to-purple-900/20',
+      link: '#',
+      github: 'https://github.com/raniqd',
     },
-    gradient: 'from-violet-600/20 to-purple-900/20',
-    link: '#',
-    github: 'https://github.com/raniqd',
-  },
-];
+  ];
+}
 
-function ArchDiagram({ diagram }: { diagram: typeof PROJECTS[0]['arch']['diagram'] }) {
+type Project = ReturnType<typeof useProjects>[0];
+
+function ArchDiagram({ diagram }: { diagram: Project['arch']['diagram'] }) {
   return (
     <div className="relative w-full h-full">
       <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -113,7 +116,7 @@ function ArchDiagram({ diagram }: { diagram: typeof PROJECTS[0]['arch']['diagram
   );
 }
 
-function ProjectCard({ project, index, large }: { project: typeof PROJECTS[0]; index: number; large?: boolean }) {
+function ProjectCard({ project, index, large }: { project: Project; index: number; large?: boolean }) {
   const [flipped, setFlipped] = useState(false);
   const { t } = useI18n();
 
@@ -227,7 +230,7 @@ function ProjectCard({ project, index, large }: { project: typeof PROJECTS[0]; i
                 rel="noopener noreferrer"
                 className="text-xs font-mono text-white/40 hover:text-white transition-colors border border-white/15 hover:border-white/30 px-3 py-1.5 rounded-lg"
               >
-                ⌥ GitHub
+                ⌥ {t('work.github')}
               </a>
               <a
                 href={project.link}
@@ -235,7 +238,7 @@ function ProjectCard({ project, index, large }: { project: typeof PROJECTS[0]; i
                 rel="noopener noreferrer"
                 className="text-xs font-mono text-white/40 hover:text-white transition-colors border border-white/15 hover:border-white/30 px-3 py-1.5 rounded-lg"
               >
-                ↗ Live
+                ↗ {t('work.live')}
               </a>
             </div>
           </div>
@@ -247,6 +250,7 @@ function ProjectCard({ project, index, large }: { project: typeof PROJECTS[0]; i
 
 export default function WorkSection() {
   const { t } = useI18n();
+  const projects = useProjects();
 
   return (
     <section id="work" className="relative py-32 md:py-40 overflow-hidden">
@@ -269,9 +273,9 @@ export default function WorkSection() {
             viewport={{ once: true }}
             className="text-5xl md:text-7xl font-black text-white tracking-tight"
           >
-            Selected<br />
+            {t('work.title_line1')}<br />
             <span className="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">
-              Work
+              {t('work.title_line2')}
             </span>
           </motion.h2>
           <motion.p
@@ -289,12 +293,12 @@ export default function WorkSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {/* ZZPizza — large, spans full on mobile, left col on desktop */}
           <div className="md:col-span-1">
-            <ProjectCard project={PROJECTS[0]} index={0} large />
+            <ProjectCard project={projects[0]} index={0} large />
           </div>
 
           {/* Portfolio — right col */}
           <div className="md:col-span-1">
-            <ProjectCard project={PROJECTS[1]} index={1} large />
+            <ProjectCard project={projects[1]} index={1} large />
           </div>
         </div>
 
@@ -310,12 +314,12 @@ export default function WorkSection() {
             <p className="text-white/60 font-mono text-sm mb-1">
               <span className="text-violet-400">{'>'}</span> next_project.status
             </p>
-            <p className="text-white font-bold text-xl">More projects incoming...</p>
-            <p className="text-white/35 text-sm mt-1">Currently 4 months into coding — building fast, shipping soon.</p>
+            <p className="text-white font-bold text-xl">{t('work.more_title')}</p>
+            <p className="text-white/35 text-sm mt-1">{t('work.more_subtitle')}</p>
           </div>
           <div className="flex items-center gap-2 px-5 py-3 rounded-xl border border-violet-500/30 bg-violet-500/10">
             <span className="w-2 h-2 rounded-full bg-violet-400 animate-pulse" />
-            <span className="text-violet-400 text-sm font-mono">In progress</span>
+            <span className="text-violet-400 text-sm font-mono">{t('work.more_status')}</span>
           </div>
         </motion.div>
       </div>

@@ -230,6 +230,7 @@ export default function ArchitectureGraph() {
         camera={{ position: [0, 0, 7], fov: 55 }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true }}
+        onCreated={({ gl }) => { gl.setClearColor(0x000000, 0); }}
         frameloop="always"
       >
         <Scene mousePos={mousePos} mouseTarget={mouseTarget} />

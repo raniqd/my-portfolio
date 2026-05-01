@@ -15,7 +15,7 @@ const ArchitectureGraph = dynamic(() => import('@/components/three/ArchitectureG
   ),
 });
 
-const TITLE_CHARS = 'Full-Stack Dev'.split('');
+// Title chars are resolved inside the component via t()
 
 function GlitchChar({ char, index }: { char: string; index: number }) {
   const [glitching, setGlitching] = useState(false);
@@ -52,7 +52,7 @@ function GlitchChar({ char, index }: { char: string; index: number }) {
   );
 }
 
-function ScrollIndicator() {
+function ScrollIndicator({ label }: { label: string }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -60,7 +60,7 @@ function ScrollIndicator() {
       transition={{ delay: 2 }}
       className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
     >
-      <span className="text-white/30 text-xs tracking-widest uppercase font-mono">Scroll</span>
+      <span className="text-white/30 text-xs tracking-widest uppercase font-mono">{label}</span>
       <motion.div
         animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
@@ -76,13 +76,14 @@ export default function HeroSection() {
   const { t } = useI18n();
   const { navigateTo } = useNav();
   const sectionRef = useRef<HTMLElement>(null);
+  const TITLE_CHARS = t('hero.title_chars').split('');
 
   return (
     <section
       id="hero"
       ref={sectionRef}
       className="relative w-full overflow-hidden flex items-center"
-      style={{ height: '100svh', minHeight: '100vh', backgroundColor: '#05050f' }}
+      style={{ height: '100svh', minHeight: '100vh' }}
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_50%,rgba(139,92,246,0.15)_0%,transparent_60%)]" />
@@ -102,7 +103,14 @@ export default function HeroSection() {
            always fills the section regardless of content height. */}
       <div
         className="absolute right-0 top-0 w-full md:w-1/2 opacity-80"
-        style={{ height: '100%', minHeight: '100vh' }}
+        style={{
+          height: '100%',
+          minHeight: '100vh',
+          maskImage: 'linear-gradient(to bottom, black 50%, transparent 95%), linear-gradient(to left, black 30%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 95%), linear-gradient(to left, black 30%, transparent 100%)',
+          maskComposite: 'intersect',
+          WebkitMaskComposite: 'destination-in',
+        }}
       >
         <ArchitectureGraph />
       </div>
@@ -198,19 +206,30 @@ export default function HeroSection() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-500/30 bg-emerald-500/10">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-emerald-400 text-xs font-mono">Open to work</span>
+              <span className="text-emerald-400 text-xs font-mono">{t('hero.badge_open')}</span>
             </div>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-violet-500/30 bg-violet-500/10">
-              <span className="text-violet-400 text-xs font-mono">⚡ 4 months coding</span>
+              <span className="text-violet-400 text-xs font-mono">{t('hero.badge_months')}</span>
             </div>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/10">
-              <span className="text-cyan-400 text-xs font-mono">🇺🇦 Ukraine</span>
+              <span className="text-cyan-400 text-xs font-mono">{t('hero.badge_location')}</span>
             </div>
           </motion.div>
         </div>
       </div>
 
-      <ScrollIndicator />
+      {/* Bottom fade — softens all background decorations before section edge */}
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 left-0 right-0 pointer-events-none"
+        style={{
+          height: '200px',
+          background: 'linear-gradient(to bottom, transparent 0%, #05050f 100%)',
+          zIndex: 5,
+        }}
+      />
+
+      <ScrollIndicator label={t('hero.scroll_hint')} />
     </section>
   );
 }

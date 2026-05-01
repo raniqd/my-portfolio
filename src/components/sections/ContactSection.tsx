@@ -42,7 +42,7 @@ export default function ContactSection() {
             viewport={{ once: true }}
             className="text-violet-400 font-mono text-sm tracking-widest uppercase mb-4"
           >
-            {'>'} contact
+            {'>'} {t('contact.label')}
           </motion.p>
 
           <motion.h2
@@ -51,11 +51,11 @@ export default function ContactSection() {
             viewport={{ once: true }}
             className="text-5xl md:text-7xl font-black text-white tracking-tight mb-6 leading-none"
           >
-            Let&apos;s<br />
+            {t('contact.heading_line1')}<br />
             <span className="bg-gradient-to-r from-violet-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
-              Build
+              {t('contact.heading_line2')}
             </span>{' '}
-            Together
+            {t('contact.heading_line3')}
           </motion.h2>
 
           <motion.p
@@ -65,7 +65,7 @@ export default function ContactSection() {
             transition={{ delay: 0.2 }}
             className="text-white/40 text-lg mb-12"
           >
-            Have a project in mind? Let&apos;s create something extraordinary.
+            {t('contact.subtitle')}
           </motion.p>
 
           {/* Contact form */}
@@ -83,7 +83,7 @@ export default function ContactSection() {
                 type="email"
                 value={senderEmail}
                 onChange={(e) => setSenderEmail(e.target.value)}
-                placeholder="your@email.com"
+                placeholder={t('contact.placeholder_email')}
                 required
                 className="w-full px-5 py-4 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-white/25 font-mono text-sm focus:outline-none focus:border-violet-500/60 transition-all"
               />
@@ -93,7 +93,7 @@ export default function ContactSection() {
               <textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                placeholder="Tell me about your project..."
+                placeholder={t('contact.placeholder_message')}
                 required
                 rows={4}
                 className="w-full px-5 py-4 rounded-xl bg-white/5 border border-white/15 text-white placeholder:text-white/25 font-mono text-sm focus:outline-none focus:border-violet-500/60 transition-all resize-none"
@@ -112,16 +112,16 @@ export default function ContactSection() {
                   animate={{ opacity: 1, y: 0 }}
                   className="text-emerald-300"
                 >
-                  ✓ Opening mail client...
+                  {t('contact.sent')}
                 </motion.span>
               ) : (
-                'Send Message →'
+                t('contact.send')
               )}
             </motion.button>
 
             {/* Email hint */}
             <p className="text-white/25 text-xs font-mono">
-              or write directly to{' '}
+              {t('contact.email_hint')}{' '}
               <a
                 href={`mailto:${RECIPIENT}`}
                 className="text-violet-400/70 hover:text-violet-400 transition-colors underline underline-offset-2"

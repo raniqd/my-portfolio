@@ -18,9 +18,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Danylo Vasylenko — Full-Stack Developer",
+  title: "raniqd.tech — Full-Stack Developer",
   description:
-    "raniqd — Full-Stack Developer from Ukraine. Building modern web apps with Next.js, React, Supabase, and more. 4 months in, already shipping real products.",
+    "raniqd — Full-Stack Developer from Czech Republic. Building modern web apps with Next.js, React, Supabase, and more. 4 months in, already shipping real products.",
   keywords: [
     "Danylo Vasylenko",
     "raniqd",
@@ -31,11 +31,11 @@ export const metadata: Metadata = {
     "Flutter",
     "Kotlin",
     "Portfolio",
-    "Ukraine",
+    "Czech Republic",
   ],
   authors: [{ name: "Danylo Vasylenko", url: "https://github.com/raniqd" }],
   openGraph: {
-    title: "Danylo Vasylenko — Full-Stack Developer",
+    title: "raniqd.tech — Full-Stack Developer",
     description: "raniqd — Building modern web apps from UI to database.",
     type: "website",
   },
@@ -52,7 +52,7 @@ export default function RootLayout({
       className={`${inter.variable} ${jetbrainsMono.variable}`}
       style={{ backgroundColor: '#05050f' }}
     >
-      <body className="bg-[#05050f] text-white antialiased font-sans" style={{ backgroundColor: '#05050f' }}>
+      <body className="bg-[#05050f] text-white antialiased font-sans">
         {/* Fixed dark backdrop — never goes away regardless of Lenis/scroll state */}
         <div
           aria-hidden="true"

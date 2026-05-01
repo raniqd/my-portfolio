@@ -160,9 +160,9 @@ export default function AboutSection() {
               viewport={{ once: true }}
               className="text-5xl md:text-6xl font-black text-white tracking-tight mb-8 leading-none"
             >
-              About<br />
+              {t('about.heading_line1')}<br />
               <span className="bg-gradient-to-r from-violet-400 to-pink-400 bg-clip-text text-transparent">
-                Me.
+                {t('about.heading_line2')}
               </span>
             </motion.h2>
 
@@ -175,9 +175,9 @@ export default function AboutSection() {
               className="grid grid-cols-3 gap-px bg-white/10 border border-white/10 rounded-xl overflow-hidden mb-8"
             >
               {[
-                { num: '4mo', label: 'Coding' },
-                { num: '2', label: 'Projects' },
-                { num: '1', label: 'Client' },
+                { num: '4mo', label: t('about.stat_coding') },
+                { num: '2', label: t('about.stat_projects') },
+                { num: '1', label: t('about.stat_client') },
               ].map((stat, i) => (
                 <div key={i} className="bg-black/50 p-5 text-center">
                   <div className="text-3xl font-black text-white">{stat.num}</div>
@@ -254,7 +254,7 @@ export default function AboutSection() {
                 className="px-4 py-2 border border-cyan-500 text-cyan-400 font-mono text-xs rotate-[1deg] hover:rotate-0 transition-transform cursor-default"
                 style={{ boxShadow: '-2px 2px 0 rgba(6,182,212,0.5)' }}
               >
-                &gt; location=Ukraine
+                &gt; {t('about.accent_location')}
               </div>
               <a
                 href="https://github.com/raniqd"

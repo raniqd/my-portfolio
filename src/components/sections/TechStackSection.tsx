@@ -209,7 +209,7 @@ export default function TechStackSection() {
             ref={titleRef}
             className="text-5xl md:text-7xl font-black text-white tracking-tight mb-4 overflow-hidden"
           >
-            {'Tech Stack'.split('').map((c, i) => (
+            {t('stack.title').split('').map((c, i) => (
               <span key={i} className="char inline-block">
                 {c === ' ' ? '\u00A0' : c}
               </span>
@@ -228,9 +228,9 @@ export default function TechStackSection() {
 
         {/* Quick stats */}
         <div className="grid grid-cols-3 gap-4 mb-16 max-w-lg mx-auto">
-          <StatBlock value="6" label="Languages" />
-          <StatBlock value="2" label="Projects" />
-          <StatBlock value="1" label="Client" />
+          <StatBlock value="6" label={t('stack.stat_languages')} />
+          <StatBlock value="2" label={t('stack.stat_projects')} />
+          <StatBlock value="1" label={t('stack.stat_client')} />
         </div>
 
         {/* Marquee rows */}
