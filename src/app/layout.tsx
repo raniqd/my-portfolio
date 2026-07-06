@@ -1,26 +1,27 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { I18nProvider } from "@/i18n";
 import SmoothScrollProvider from "@/providers/SmoothScrollProvider";
 import NavProvider from "@/providers/NavProvider";
 
 const inter = Inter({
-  subsets: ["latin", "cyrillic"],
+  subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin", "cyrillic"],
+  subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
 });
 
+import MirrorReceiver from '@/components/layout/MirrorReceiver';
+
 export const metadata: Metadata = {
-  title: "raniqd.tech — Full-Stack Developer",
+  title: "raniqd.tech - Full-Stack Developer",
   description:
-    "raniqd — Full-Stack Developer from Czech Republic. Building modern web apps with Next.js, React, Supabase, and more. 4 months in, already shipping real products.",
+    "raniqd - Full-Stack Developer from Czech Republic. Building modern web apps with Next.js, React, Supabase, and more. 7 months in, already shipping real products.",
   keywords: [
     "Danylo Vasylenko",
     "raniqd",
@@ -35,8 +36,8 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Danylo Vasylenko", url: "https://github.com/raniqd" }],
   openGraph: {
-    title: "raniqd.tech — Full-Stack Developer",
-    description: "raniqd — Building modern web apps from UI to database.",
+    title: "raniqd.tech - Full-Stack Developer",
+    description: "raniqd - Building modern web apps from UI to database.",
     type: "website",
   },
 };
@@ -64,13 +65,12 @@ export default function RootLayout({
             pointerEvents: 'none',
           }}
         />
-        <I18nProvider>
+        <MirrorReceiver />
           <SmoothScrollProvider>
             <NavProvider>
               {children}
             </NavProvider>
           </SmoothScrollProvider>
-        </I18nProvider>
       </body>
     </html>
   );

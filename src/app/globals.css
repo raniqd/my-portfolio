@@ -1,182 +1,79 @@
 @import "tailwindcss";
 
-/* ============================================
-   AURORA GRADIENT ANIMATION
-   ============================================ */
-@keyframes aurora {
-  0%   { background-position: 0% 50%; }
-  25%  { background-position: 50% 0%; }
-  50%  { background-position: 100% 50%; }
-  75%  { background-position: 50% 100%; }
-  100% { background-position: 0% 50%; }
-}
-
 @theme {
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-mono: var(--font-mono, 'JetBrains Mono'), 'Fira Code', monospace;
+
+  /* Custom colors matching the design plan */
+  --color-bg-base: #000000;
+  --color-bg-surface: #0A0A0A;
+  --color-border-subtle: #1A1A1A;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #8A8A8A;
 }
 
-/* ============================================
-   GLOBAL RESET & BASE STYLES
-   ============================================ */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: auto; /* Lenis handles smooth scroll */
-  background-color: #05050f;
+  scroll-behavior: auto;
+  background-color: #000000;
   min-height: 100%;
-  overscroll-behavior-y: none; 
+  overscroll-behavior-y: none;
   overscroll-behavior-x: none;
 }
 
-/* Nuclear option: fixed dark background that's ALWAYS behind everything.
-   Lenis sets overflow:hidden on html which breaks overscroll-behavior,
-   so we paint a fixed backdrop at z-index -999 that shows through. */
-html::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 20% 30%, rgba(139, 92, 246, 0.18) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 50% at 80% 70%, rgba(6, 182, 212, 0.14) 0%, transparent 55%),
-    radial-gradient(ellipse 90% 70% at 50% 10%, rgba(99, 102, 241, 0.12) 0%, transparent 60%),
-    #05050f;
-  background-size: 250% 250%;
-  animation: aurora 20s ease infinite;
-  z-index: -999;
-  pointer-events: none;
-}
-
 body {
-  background-color: #05050f;
-  color: white;
+  background-color: #000000;
+  color: #FFFFFF;
   overflow-x: hidden;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ============================================
-   SELECTION COLORS
-   ============================================ */
 ::selection {
-  background: rgba(139, 92, 246, 0.35);
-  color: white;
+  background: #FFFFFF;
+  color: #000000;
 }
 
-/* ============================================
-   SCROLLBAR STYLING
-   ============================================ */
 ::-webkit-scrollbar {
   width: 4px;
+  height: 4px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.4);
-  border-radius: 2px;
+  background: #1A1A1A;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.7);
+  background: #8A8A8A;
 }
 
-/* ============================================
-   NOISE TEXTURE OVERLAY (subtle grain)
-   ============================================ */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 128px 128px;
+/* Typography Utility */
+.tracking-tight-display {
+  letter-spacing: -0.05em;
 }
 
-/* ============================================
-   GLASS MORPHISM UTILITY
-   ============================================ */
-.glass {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Focus utility for the signature scroll effect */
+.scroll-focus-item {
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, filter;
 }
 
-.glass-strong {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+.scroll-focus-dimmed {
+  opacity: 0.15;
+  filter: blur(4px) grayscale(100%);
 }
 
-/* ============================================
-   LIQUID GLASS HOVER EFFECT
-   ============================================ */
-.liquid-glass {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s ease;
-}
-
-.liquid-glass::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(139, 92, 246, 0.12) 0%,
-    transparent 60%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.liquid-glass:hover::before {
+.scroll-focus-active {
   opacity: 1;
-}
-
-/* ============================================
-   GLOW TEXT UTILITIES
-   ============================================ */
-.glow-violet {
-  text-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
-}
-
-.glow-cyan {
-  text-shadow: 0 0 40px rgba(6, 182, 212, 0.5);
-}
-
-/* ============================================
-   GRADIENT UTILITIES
-   ============================================ */
-.gradient-text {
-  background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 50%, #10b981 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* ============================================
-   TERMINAL SCROLLBAR
-   ============================================ */
-.scrollbar-thin::-webkit-scrollbar {
-  width: 3px;
-}
-.scrollbar-thin::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.3);
-  border-radius: 2px;
-}
-
-/* ============================================
-   THREE.JS CANVAS
-   ============================================ */
-canvas {
-  display: block;
-  outline: none;
+  filter: blur(0px) grayscale(0%);
 }

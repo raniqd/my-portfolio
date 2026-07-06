@@ -1,122 +1,129 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useI18n } from '@/i18n';
-import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
+import React, { useRef } from 'react';
+import { motion, useMotionValue, useSpring, useTransform, MotionValue, useScroll } from 'framer-motion';
 import { useNav } from '@/providers/NavProvider';
 
-export default function Header() {
-  const { t } = useI18n();
-  const { navigateTo } = useNav();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const { scrollY } = useScroll();
-  const headerBg = useTransform(scrollY, [0, 80], ['rgba(5,5,15,0)', 'rgba(5,5,15,0.90)']);
 
-  const navItems = ['work', 'stack', 'about', 'contact'] as const;
+const WorkIcon = ({ className }: { className?: string }) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+  </svg>
+);
+
+const StackIcon = ({ className }: { className?: string }) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+    <polyline points="2 12 12 17 22 12" />
+    <polyline points="2 17 12 22 22 17" />
+  </svg>
+);
+
+const AboutIcon = ({ className }: { className?: string }) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+    <circle cx="12" cy="7" r="4" />
+  </svg>
+);
+
+const ContactIcon = ({ className }: { className?: string }) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <rect width="20" height="16" x="2" y="4" rx="2" />
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+  </svg>
+);
+
+interface DockIconProps {
+  mouseX?: MotionValue<number>;
+  href: string;
+  children: React.ReactNode;
+  onClick?: (e: React.MouseEvent) => void;
+}
+
+const DockIcon: React.FC<DockIconProps> = ({ mouseX, href, children, onClick }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const defaultMouseX = useMotionValue(Infinity);
+
+  const iconSize = 32;
+  const iconMagnification = 48;
+  const iconDistance = 160;
+
+  const distance = useTransform(mouseX ?? defaultMouseX, (val) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+    return val - bounds.x - bounds.width / 2;
+  });
+
+  const widthSync = useTransform(
+    distance,
+    [-iconDistance, 0, iconDistance],
+    [iconSize, iconMagnification, iconSize]
+  );
+
+  const width = useSpring(widthSync, {
+    mass: 0.1,
+    stiffness: 150,
+    damping: 12,
+  });
+
+  return (
+    <motion.div ref={ref} style={{ width }} className="flex aspect-square items-center justify-center rounded-full">
+      <a href={href} className="flex h-full w-full items-center justify-center group" onClick={onClick}>
+        {children}
+      </a>
+    </motion.div>
+  );
+};
+
+export default function Header() {
+  const { navigateTo } = useNav();
+  const mouseX = useMotionValue(Infinity);
+  const { scrollY } = useScroll();
+
+  const backgroundColor = useTransform(scrollY, [0, 80], ['rgba(0,0,0,0)', 'rgba(0,0,0,0.8)']);
+  const borderColor = useTransform(scrollY, [0, 80], ['rgba(26,26,26,0)', 'rgba(26,26,26,1)']);
 
   const handleNav = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
-    setMenuOpen(false);
     navigateTo(id, e.clientX, e.clientY);
   };
 
+  const icons = [
+    { name: 'stack', component: StackIcon, href: '#stack' },
+    { name: 'work', component: WorkIcon, href: '#work' },
+    { name: 'about', component: AboutIcon, href: '#about' },
+    { name: 'contact', component: ContactIcon, href: '#contact' },
+  ];
+
   return (
     <motion.header
-      style={{ backgroundColor: headerBg }}
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm"
+      style={{ backgroundColor, borderColor }}
+      className="fixed top-8 left-1/2 z-50 flex items-center gap-10 md:gap-20 rounded-[2rem] border px-10 md:px-20 py-2 backdrop-blur-lg"
+      initial={{ y: -50, opacity: 0, x: "-50%" }}
+      animate={{ y: 0, opacity: 1, x: "-50%" }}
+      transition={{ duration: 0.6, delay: 0.2 }}
+      onMouseMove={(e) => mouseX.set(e.pageX)}
+      onMouseLeave={() => mouseX.set(Infinity)}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between h-16 md:h-20">
-        {/* Logo */}
-        <motion.a
-          href="#hero"
-          onClick={(e) => handleNav(e, 'hero')}
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex items-center gap-2.5 group"
-        >
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-cyan-400 flex items-center justify-center shrink-0">
-            <span className="text-white font-black text-xs font-mono tracking-tighter">rq</span>
-          </div>
-          <span className="text-white font-bold tracking-tight hidden sm:block font-mono">
-            raniqd<span className="text-violet-400">.dev</span>
-          </span>
-        </motion.a>
-
-        {/* Desktop Nav */}
-        <motion.nav
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="hidden md:flex items-center gap-8"
-        >
-          {navItems.map((item, i) => (
-            <motion.a
-              key={item}
-              href={`#${item}`}
-              onClick={(e) => handleNav(e, item)}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.1 * i + 0.3 }}
-              className="text-sm text-white/60 hover:text-white transition-colors duration-200 font-medium relative group cursor-pointer"
-            >
-              {t(`nav.${item}`)}
-              <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-violet-400 group-hover:w-full transition-all duration-300" />
-            </motion.a>
-          ))}
-        </motion.nav>
-
-        {/* Right Side */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex items-center gap-4"
-        >
-          <LanguageSwitcher />
-
-          {/* Mobile menu button */}
-          <button
-            className="md:hidden flex flex-col gap-1.5 p-2"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
-            <motion.span
-              animate={menuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-              className="block w-6 h-0.5 bg-white/80 origin-center"
-            />
-            <motion.span
-              animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="block w-6 h-0.5 bg-white/80"
-            />
-            <motion.span
-              animate={menuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-              className="block w-6 h-0.5 bg-white/80 origin-center"
-            />
-          </button>
-        </motion.div>
-      </div>
-
-      {/* Mobile Menu */}
-      <motion.div
-        initial={false}
-        animate={menuOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
-        className="md:hidden overflow-hidden bg-black/95 backdrop-blur-xl border-t border-white/10"
+      <a
+        href="#hero"
+        onClick={(e) => handleNav(e, 'hero')}
+        className="flex w-[32px] h-[32px] items-center justify-center rounded-xl bg-[#0A0A0A] border border-[#1A1A1A] hover:bg-[#FFFFFF] group transition-colors duration-300"
       >
-        <div className="px-6 py-4 flex flex-col gap-4">
-          {navItems.map((item) => (
-            <a
-              key={item}
-              href={`#${item}`}
-              onClick={(e) => handleNav(e, item)}
-              className="text-white/70 hover:text-white font-medium py-2 border-b border-white/10 transition-colors"
-            >
-              {t(`nav.${item}`)}
-            </a>
-          ))}
-        </div>
-      </motion.div>
+        <span className="text-[#FFFFFF] group-hover:text-[#000000] font-black text-[10px] font-mono tracking-tighter transition-colors duration-300">rq</span>
+      </a>
+
+      <div className="w-[1px] h-5 bg-[#1A1A1A]" />
+
+      {icons.map((icon) => (
+        <DockIcon
+          key={icon.name}
+          href={icon.href}
+          onClick={(e) => handleNav(e, icon.name)}
+          mouseX={mouseX}
+        >
+          <icon.component className="h-full w-full p-2 text-[#8A8A8A] group-hover:text-[#FFFFFF] transition-colors duration-300" />
+        </DockIcon>
+      ))}
     </motion.header>
   );
 }

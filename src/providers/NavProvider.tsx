@@ -15,7 +15,7 @@ interface NavContextType {
   navigateTo: (targetId: string, originX?: number, originY?: number) => void;
 }
 
-const NavContext = createContext<NavContextType>({ navigateTo: () => {} });
+const NavContext = createContext<NavContextType>({ navigateTo: () => { } });
 
 export function useNav() {
   return useContext(NavContext);
@@ -87,13 +87,13 @@ export default function NavProvider({ children }: { children: ReactNode }) {
                 width: 60,
                 height: 60,
                 borderRadius: '50%',
-                background: 'radial-gradient(circle, rgba(139,92,246,0.55) 0%, rgba(6,182,212,0.25) 50%, transparent 70%)',
+                background: 'radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 50%, transparent 70%)',
                 transform: 'translate(-50%, -50%)',
                 transformOrigin: 'center',
               }}
             />
 
-            {/* Horizontal streak lines (TikTok speed lines) */}
+            {/* Horizontal streak lines (speed lines) */}
             {[...Array(6)].map((_, i) => (
               <motion.div
                 key={i}
@@ -106,7 +106,7 @@ export default function NavProvider({ children }: { children: ReactNode }) {
                   top: `${15 + i * 14}%`,
                   width: '100%',
                   height: '1px',
-                  background: `linear-gradient(90deg, transparent, rgba(139,92,246,${0.4 - i * 0.05}), transparent)`,
+                  background: `linear-gradient(90deg, transparent, rgba(255,255,255,${0.2 - i * 0.03}), transparent)`,
                   transformOrigin: `${(burst.x / window.innerWidth) * 100}% 50%`,
                 }}
               />
@@ -115,12 +115,12 @@ export default function NavProvider({ children }: { children: ReactNode }) {
             {/* Vertical wipe — dark fill that sweeps down and then exits up */}
             <motion.div
               initial={{ y: '-100%' }}
-              animate={{ y: ['−100%', '0%', '0%', '100%'] }}
+              animate={{ y: ['-100%', '0%', '0%', '100%'] }}
               transition={{ duration: 0.65, times: [0, 0.35, 0.55, 1], ease: 'easeInOut' }}
               style={{
                 position: 'absolute',
                 inset: 0,
-                background: 'linear-gradient(180deg, rgba(5,5,15,0.97) 0%, rgba(30,10,60,0.95) 100%)',
+                background: '#000000',
               }}
             />
           </motion.div>
