@@ -32,23 +32,18 @@ export default function Icon() {
           <div
             style={{
               display: 'flex',
-              alignItems: 'baseline',
+              alignItems: 'center',
+              justifyContent: 'center',
               fontFamily: 'system-ui, sans-serif',
-              fontSize: 280,
+              fontSize: 260,
               fontWeight: 900,
-              transform: 'translateX(-20px) translateY(-20px)',
+              letterSpacing: '-10px',
+              transform: 'translateY(-15px)',
             }}
           >
-            <span style={{ 
-              color: '#FFFFFF', 
-              fontSize: 340, 
-              marginLeft: '20px',
-              marginRight: '-55px', 
-              zIndex: 10,
-              textShadow: '6px 0px 0px #050505'
-            }}>r</span>
-            <span style={{ color: '#FFFFFF', zIndex: 1 }}>q</span>
-            <span style={{ color: '#06b6d4', marginLeft: '10px' }}>.</span>
+            <span style={{ color: '#FFFFFF' }}>d</span>
+            <span style={{ color: '#FFFFFF' }}>v</span>
+            <span style={{ color: '#06b6d4', marginLeft: '5px' }}>.</span>
           </div>
         </div>
       </div>
