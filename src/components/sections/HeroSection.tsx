@@ -39,6 +39,7 @@ export default function HeroSection() {
               WebkitMaskImage: 'radial-gradient(ellipse at center, black 20%, transparent 60%)',
             }}
             priority
+            unoptimized={true}
           />
         </div>
       </motion.div>
