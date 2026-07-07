@@ -78,6 +78,11 @@ export default function Header() {
   const { navigateTo } = useNav();
   const mouseX = useMotionValue(Infinity);
   const { scrollY } = useScroll();
+  const [isTouch, setIsTouch] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsTouch(window.matchMedia('(pointer: coarse)').matches);
+  }, []);
 
   const backgroundColor = useTransform(scrollY, [0, 80], ['rgba(0,0,0,0)', 'rgba(0,0,0,0.8)']);
   const borderColor = useTransform(scrollY, [0, 80], ['rgba(26,26,26,0)', 'rgba(26,26,26,1)']);
@@ -85,14 +90,6 @@ export default function Header() {
   const handleNav = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     navigateTo(id, e.clientX, e.clientY);
-    
-    // Auto-collapse dock on mobile after a short delay
-    setTimeout(() => {
-      mouseX.set(Infinity);
-      if (document.activeElement instanceof HTMLElement) {
-        document.activeElement.blur();
-      }
-    }, 600);
   };
 
   const icons = [
@@ -109,15 +106,17 @@ export default function Header() {
       initial={{ y: -50, opacity: 0, x: "-50%" }}
       animate={{ y: 0, opacity: 1, x: "-50%" }}
       transition={{ duration: 0.6, delay: 0.2 }}
-      onMouseMove={(e) => mouseX.set(e.pageX)}
+      onMouseMove={(e) => {
+        if (!isTouch) mouseX.set(e.pageX);
+      }}
       onMouseLeave={() => mouseX.set(Infinity)}
     >
       <a
         href="#hero"
         onClick={(e) => handleNav(e, 'hero')}
-        className="flex w-[32px] h-[32px] items-center justify-center rounded-xl bg-[#0A0A0A] border border-[#1A1A1A] hover:bg-[#FFFFFF] group transition-colors duration-300"
+        className="flex w-[32px] h-[32px] items-center justify-center rounded-xl bg-[#0A0A0A] border border-[#1A1A1A] md:hover:bg-[#FFFFFF] active:bg-[#333333] group transition-colors duration-300"
       >
-        <span className="text-[#FFFFFF] group-hover:text-[#000000] font-black text-[10px] font-mono tracking-tighter transition-colors duration-300">dv</span>
+        <span className="text-[#FFFFFF] md:group-hover:text-[#000000] font-black text-[10px] font-mono tracking-tighter transition-colors duration-300">dv</span>
       </a>
 
       <div className="w-[1px] h-5 bg-[#1A1A1A]" />
@@ -129,7 +128,7 @@ export default function Header() {
           onClick={(e) => handleNav(e, icon.name)}
           mouseX={mouseX}
         >
-          <icon.component className="h-full w-full p-2 text-[#8A8A8A] group-hover:text-[#FFFFFF] transition-colors duration-300" />
+          <icon.component className="h-full w-full p-2 text-[#8A8A8A] md:group-hover:text-[#FFFFFF] active:text-[#FFFFFF] transition-colors duration-300" />
         </DockIcon>
       ))}
     </motion.header>
