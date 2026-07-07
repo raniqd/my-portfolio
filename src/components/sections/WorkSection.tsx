@@ -56,6 +56,18 @@ function ProjectBlock({ project }: { project: Project }) {
         <div>
           <div className="flex items-center gap-4 text-[#8A8A8A] font-mono text-xs tracking-widest uppercase mb-8">
             <span>{project.year}</span>
+            {project.status && (
+              <>
+                <span className="w-1 h-1 bg-[#333333] rounded-full" />
+                <span className="flex items-center gap-2 text-[#06b6d4]">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#06b6d4] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#06b6d4]"></span>
+                  </span>
+                  {project.status}
+                </span>
+              </>
+            )}
           </div>
 
           <h3 className="text-4xl md:text-5xl font-black tracking-tight text-[#FFFFFF] mb-4">
