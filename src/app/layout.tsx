@@ -19,7 +19,7 @@ const jetbrainsMono = JetBrains_Mono({
 import MirrorReceiver from '@/components/layout/MirrorReceiver';
 
 export const metadata: Metadata = {
-  title: "raniqd.tech - Full-Stack Developer",
+  title: "raniqd.tech",
   description:
     "raniqd - Full-Stack Developer from Czech Republic. Building modern web apps with Next.js, React, Supabase, and more. 7 months in, already shipping real products.",
   keywords: [
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Danylo Vasylenko", url: "https://github.com/raniqd" }],
   openGraph: {
-    title: "raniqd.tech - Full-Stack Developer",
+    title: "raniqd.tech",
     description: "raniqd - Building modern web apps from UI to database.",
     type: "website",
   },
