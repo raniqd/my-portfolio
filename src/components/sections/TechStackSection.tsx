@@ -61,7 +61,7 @@ export default function TechStackSection() {
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start 95%", "start 45%"]
+    offset: ["start 95%", "start 70%"]
   });
 
   const filter = useTransform(scrollYProgress, [0, 1], ["blur(8px) grayscale(100%)", "blur(0px) grayscale(0%)"]);
