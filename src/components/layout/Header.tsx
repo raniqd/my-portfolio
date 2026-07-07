@@ -85,6 +85,14 @@ export default function Header() {
   const handleNav = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     navigateTo(id, e.clientX, e.clientY);
+    
+    // Auto-collapse dock on mobile after a short delay
+    setTimeout(() => {
+      mouseX.set(Infinity);
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
+    }, 600);
   };
 
   const icons = [
@@ -103,7 +111,6 @@ export default function Header() {
       transition={{ duration: 0.6, delay: 0.2 }}
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
-      onTouchEnd={() => mouseX.set(Infinity)}
     >
       <a
         href="#hero"
