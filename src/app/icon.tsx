@@ -36,13 +36,19 @@ export default function Icon() {
               fontFamily: 'system-ui, sans-serif',
               fontSize: 280,
               fontWeight: 900,
-              letterSpacing: '-20px',
-              transform: 'translateX(-10px) translateY(-25px)',
+              transform: 'translateX(-20px) translateY(-20px)',
             }}
           >
-            <span style={{ color: '#FFFFFF' }}>r</span>
-            <span style={{ color: '#FFFFFF' }}>q</span>
-            <span style={{ color: '#06b6d4' }}>.</span>
+            <span style={{ 
+              color: '#FFFFFF', 
+              fontSize: 340, 
+              marginLeft: '20px',
+              marginRight: '-55px', 
+              zIndex: 10,
+              textShadow: '6px 0px 0px #050505'
+            }}>r</span>
+            <span style={{ color: '#FFFFFF', zIndex: 1 }}>q</span>
+            <span style={{ color: '#06b6d4', marginLeft: '10px' }}>.</span>
           </div>
         </div>
       </div>
