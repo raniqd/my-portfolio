@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const size = { width: 32, height: 32 };
+export const size = { width: 512, height: 512 };
 export const contentType = 'image/png';
 
 export default function Icon() {
@@ -14,18 +14,36 @@ export default function Icon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: '#050505',
-          color: '#FFFFFF',
-          fontSize: 22,
-          fontWeight: 800,
-          fontFamily: 'system-ui, sans-serif',
-          letterSpacing: '-2px',
-          borderRadius: '4px',
+          backgroundColor: '#000000',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'baseline', transform: 'translateY(-1px)' }}>
-          <span style={{ marginRight: '-2px' }}>r</span>
-          <span>q</span>
+        <div
+          style={{
+            width: '85%',
+            height: '85%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: '#050505',
+            borderRadius: '96px',
+            border: '24px solid #111111',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'baseline',
+              fontFamily: 'system-ui, sans-serif',
+              fontSize: 280,
+              fontWeight: 900,
+              letterSpacing: '-20px',
+              transform: 'translateX(-10px) translateY(-25px)',
+            }}
+          >
+            <span style={{ color: '#FFFFFF' }}>r</span>
+            <span style={{ color: '#FFFFFF' }}>q</span>
+            <span style={{ color: '#06b6d4' }}>.</span>
+          </div>
         </div>
       </div>
     ),
