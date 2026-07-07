@@ -67,14 +67,7 @@ const DockIcon: React.FC<DockIconProps> = ({ mouseX, href, children, onClick }) 
 
   return (
     <motion.div ref={ref} style={{ width }} className="flex aspect-square items-center justify-center rounded-full">
-      <a
-        href={href}
-        className="flex h-full w-full items-center justify-center group"
-        onClick={(e) => {
-          if (onClick) onClick(e);
-          if (mouseX) mouseX.set(Infinity);
-        }}
-      >
+      <a href={href} className="flex h-full w-full items-center justify-center group" onClick={onClick}>
         {children}
       </a>
     </motion.div>
@@ -110,6 +103,7 @@ export default function Header() {
       transition={{ duration: 0.6, delay: 0.2 }}
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
+      onTouchEnd={() => mouseX.set(Infinity)}
     >
       <a
         href="#hero"
