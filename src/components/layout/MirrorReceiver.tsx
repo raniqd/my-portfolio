@@ -6,7 +6,11 @@ export default function MirrorReceiver() {
   const [isMirror, setIsMirror] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
 
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
   useEffect(() => {
+    setIsTouchDevice(window.matchMedia('(pointer: coarse)').matches);
+
     if (typeof window !== 'undefined' && window.location.search.includes('mirror=true')) {
       setIsMirror(true);
       // Hide native scrollbars so the iframe looks clean
@@ -33,6 +37,7 @@ export default function MirrorReceiver() {
   }, []);
 
   if (!isMirror) return null;
+  if (isTouchDevice) return null;
 
   return (
     <div
