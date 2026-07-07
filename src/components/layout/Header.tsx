@@ -97,7 +97,7 @@ export default function Header() {
   return (
     <motion.header
       style={{ backgroundColor, borderColor }}
-      className="fixed top-8 left-1/2 z-50 flex items-center gap-10 md:gap-20 rounded-[2rem] border px-10 md:px-20 py-2 backdrop-blur-lg"
+      className="fixed top-4 md:top-8 left-1/2 z-50 flex items-center gap-4 md:gap-20 rounded-full md:rounded-[2rem] border px-4 md:px-20 py-2 backdrop-blur-lg"
       initial={{ y: -50, opacity: 0, x: "-50%" }}
       animate={{ y: 0, opacity: 1, x: "-50%" }}
       transition={{ duration: 0.6, delay: 0.2 }}
@@ -109,7 +109,7 @@ export default function Header() {
         onClick={(e) => handleNav(e, 'hero')}
         className="flex w-[32px] h-[32px] items-center justify-center rounded-xl bg-[#0A0A0A] border border-[#1A1A1A] hover:bg-[#FFFFFF] group transition-colors duration-300"
       >
-        <span className="text-[#FFFFFF] group-hover:text-[#000000] font-black text-[10px] font-mono tracking-tighter transition-colors duration-300">rq</span>
+        <span className="text-[#FFFFFF] group-hover:text-[#000000] font-black text-[10px] font-mono tracking-tighter transition-colors duration-300">dv</span>
       </a>
 
       <div className="w-[1px] h-5 bg-[#1A1A1A]" />

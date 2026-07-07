@@ -24,7 +24,7 @@ export default function AboutSection() {
   });
 
   return (
-    <section id="about" ref={sectionRef} className="relative py-32 md:py-64 bg-[#000000] flex items-center justify-center min-h-[80vh]">
+    <section id="about" ref={sectionRef} className="relative py-20 md:py-64 bg-[#000000] flex items-center justify-center min-h-[60vh] md:min-h-[80vh]">
       <div className="max-w-5xl mx-auto px-6 md:px-10 text-center">
 
         <div className="flex justify-center mb-16">
@@ -35,7 +35,7 @@ export default function AboutSection() {
           </div>
         </div>
 
-        <h2 className="text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-[#FFFFFF] leading-[1.3] flex flex-wrap justify-center">
+        <h2 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-medium tracking-tight text-[#FFFFFF] leading-[1.5] sm:leading-[1.4] md:leading-[1.3] flex flex-wrap justify-center">
           {words.map((word, i) => {
             const start = i / words.length;
             const end = start + (1 / words.length);

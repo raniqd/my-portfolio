@@ -24,9 +24,9 @@ export default function ContactSection() {
 
         <a
           href="mailto:danilavasilenko15@gmail.com"
-          className="group block w-full text-center py-24 md:py-32 border border-[#1A1A1A]"
+          className="group block w-full text-center py-16 md:py-32 border border-[#1A1A1A]"
         >
-          <span className="text-[5vw] md:text-[4vw] font-black tracking-tight text-[#CCCCCC] group-hover:text-[#FFFFFF] transition-colors duration-500">
+          <span className="text-[4.5vw] sm:text-[4vw] md:text-[3vw] font-black tracking-tight text-[#CCCCCC] group-hover:text-[#FFFFFF] transition-colors duration-500 break-all">
             danilavasilenko15@gmail.com
           </span>
         </a>

@@ -50,7 +50,7 @@ function ProjectBlock({ project }: { project: Project }) {
     <motion.div
       ref={ref}
       style={{ opacity, filter, scale }}
-      className="relative flex flex-col md:flex-row gap-8 md:gap-16 py-16 md:py-32 border-t border-[#1A1A1A] group"
+      className="relative flex flex-col md:flex-row gap-6 md:gap-16 py-10 md:py-32 border-t border-[#1A1A1A] group"
     >
       <div className="w-full md:w-1/3 flex flex-col justify-between">
         <div>
@@ -79,7 +79,7 @@ function ProjectBlock({ project }: { project: Project }) {
 
       <div className="w-full md:w-2/3">
         {/* Cinematic wide frame for the project */}
-        <div className="w-full aspect-[4/3] md:aspect-[16/10] bg-[#0A0A0A] border border-[#1A1A1A] overflow-hidden relative group/image hover:border-[#333333] transition-colors duration-500">
+        <div className="w-full aspect-[16/10] bg-[#0A0A0A] border border-[#1A1A1A] overflow-hidden relative group/image hover:border-[#333333] transition-colors duration-500">
 
           {/* Visualization */}
           {project.id === 'portfolio' ? (
@@ -132,7 +132,7 @@ export default function WorkSection() {
   const projects = useProjects();
 
   return (
-    <section id="work" className="relative py-32 md:py-48 bg-[#000000]">
+    <section id="work" className="relative py-20 md:py-48 bg-[#000000]">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
 
         {/* Header */}

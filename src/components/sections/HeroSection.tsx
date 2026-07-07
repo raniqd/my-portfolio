@@ -23,7 +23,7 @@ export default function HeroSection() {
     <section
       id="hero"
       ref={sectionRef}
-      className="relative w-full h-[100svh] min-h-[700px] flex flex-col justify-between px-6 md:px-10 overflow-hidden bg-[#000000]"
+      className="relative w-full h-[100svh] min-h-[600px] flex flex-col justify-between px-6 md:px-10 overflow-hidden bg-[#000000]"
     >
       {/* Large integrated portrait in B&W */}
       <motion.div style={{ y, opacity }} className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">

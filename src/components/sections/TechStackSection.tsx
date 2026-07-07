@@ -68,7 +68,7 @@ export default function TechStackSection() {
   const opacity = useTransform(scrollYProgress, [0, 1], [0.3, 1]);
 
   return (
-    <section id="stack" ref={sectionRef} className="relative py-32 md:py-48 bg-[#000000]">
+    <section id="stack" ref={sectionRef} className="relative py-20 md:py-48 bg-[#000000]">
       <motion.div style={{ filter, opacity }} className="max-w-7xl mx-auto px-6 md:px-10">
         
         {/* Header */}
